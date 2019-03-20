@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.url">jdbc:mysql://localhost:3306/baseoeuvre</property>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <!-- <property name="connection.username"/> -->
+        <!-- <property name="connection.password"/> -->
+        <property name="hibernate.connection.username">userepul</property>
+        <property name="hibernate.connection.password">epul</property>
+
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+
+
+        <mapping class="com.epul.metier.AdherentEntity"/>
+        <mapping class="com.epul.metier.OeuvrepretEntity"/>
+        <mapping class="com.epul.metier.OeuvreventeEntity"/>
+        <mapping class="com.epul.metier.ProprietaireEntity"/>
+        <mapping class="com.epul.metier.ReservationEntity"/>
+        <mapping class="com.epul.metier.UtilisateurEntity"/>
+
+    </session-factory>
+</hibernate-configuration>
