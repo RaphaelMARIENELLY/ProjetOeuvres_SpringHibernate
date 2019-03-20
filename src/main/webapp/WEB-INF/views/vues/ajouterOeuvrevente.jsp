@@ -5,7 +5,7 @@
 <body>
 <%@include file="navigation.jsp"%>
 <H1> Ajout d'une Oeuvre </H1>
-<form method="post" action="/insererOeuvre.htm" onsubmit="return teste()">
+<form method="post" action="/insererOeuvrevente.htm" onsubmit="return teste()">
 <div class="col-md-12 well well-md">
     <h1>Ajouter Séjour</h1>
     <div class="row" >
@@ -15,7 +15,7 @@
     <div class="form-group">
         <label class="col-md-3 control-label">Titre de l'oeuvre : </label>
         <div class="col-md-3">
-            <INPUT type="text" name="txttitre" value="" id="nom" class="form-control" min="0">
+            <INPUT type="text" name="txttitre" value="" id="titrev" class="form-control" min="0">
         </div>
 
     </div>
@@ -26,7 +26,7 @@
     <div class="form-group">
         <label class="col-md-3 control-label">Prix de l'oeuvre : </label>
         <div class="col-md-3">
-            <INPUT type="text" name="txtprix" value="" id="prenom" class="form-control" min="0">
+            <INPUT type="text" name="txtprix" value="" id="prix" class="form-control" min="0">
         </div>
     </div>
     <div class="row" >

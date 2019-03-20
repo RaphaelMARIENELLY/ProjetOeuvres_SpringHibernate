@@ -1,7 +1,6 @@
 package com.epul.dao;
 
 import com.epul.meserreurs.MonException;
-import com.epul.metier.AdherentEntity;
 import com.epul.metier.OeuvreventeEntity;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -10,58 +9,54 @@ import org.hibernate.Transaction;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-public class ServiceOeuvreDAO {
-    /* Lister les oeuvres
+public class ServiceOeuvreventeDAO {
+    /* Lister les oeuvres (ventes)
      * */
-    public List<OeuvreventeEntity> consulterListeOeuvres() throws MonException {
-        List<OeuvreventeEntity> mesOeuvres = null;
-        String marequete = "SELECT a FROM OeuvreventeEntity a ORDER BY a.titreOeuvrevente";
+    public List<OeuvreventeEntity> consulterListeOeuvreventes() throws MonException {
+        List<OeuvreventeEntity> mesOeuvreventes = null;
+        String marequete = "SELECT ov FROM OeuvreventeEntity ov ORDER BY ov.idProprietaire";
         try {
 
             Session session = ServiceHibernate.currentSession();
             TypedQuery<OeuvreventeEntity> query = session.createQuery(marequete);
-            mesOeuvres = query.getResultList();
+            mesOeuvreventes = query.getResultList();
             session.close();
 
         } catch (HibernateException ex) {
             throw new MonException("Impossible d'accèder à la SessionFactory: ",  ex.getMessage());
         }
-        return mesOeuvres;
-
+        return mesOeuvreventes;
     }
 
-    /* Consultation d'une oeuvre par son numéro
+    /* Consultation d'une oeuvrevente par son numéro
      */
-    public OeuvreventeEntity oeuvreById(int numero) throws MonException {
-        List<OeuvreventeEntity> mesOeuvres = null;
-        OeuvreventeEntity oeuvre = new OeuvreventeEntity();
-        String marequete ="SELECT o FROM OeuvreventeEntity o WHERE o.idOeuvrevente="+numero;
+    public OeuvreventeEntity oeuvreventeById(int numero) throws MonException {
+        List<OeuvreventeEntity> mesOeuvreventes = null;
+        OeuvreventeEntity uneOeuvrevente = new OeuvreventeEntity();
+        String marequete ="SELECT ov FROM OeuvreventeEntity ov WHERE ov.idOeuvrevente="+numero;
         try {
             Session session = ServiceHibernate.currentSession();
-
             TypedQuery query =   session.createQuery(marequete);
-            mesOeuvres =  query.getResultList();
-            oeuvre = mesOeuvres.get(0);
+            mesOeuvreventes =  query.getResultList();
+            uneOeuvrevente = mesOeuvreventes.get(0);
             session.close();
         }
         catch (HibernateException ex) {
             throw new MonException("Impossible d'accèder à la SessionFactory: ",  ex.getMessage());
         }
-
-        return oeuvre;
+        return uneOeuvrevente;
     }
 
-
     //  ***************************************
-    //  On ajoute un adhérent à la base
+    //  On ajoute une oeuvrevente à la base
     //  ***************************************
-    public void insertOeuvre(OeuvreventeEntity uneOv) throws MonException
+    public void insertOeuvrevente(OeuvreventeEntity uneOv) throws MonException
     {
         Transaction tx = null;
         try {
             Session   session = ServiceHibernate.currentSession();
             tx = session.beginTransaction();
-            // on transfère la nouvelle oeuvre à la base
+            // on transfère la nouvelle oeuvrevente à la base
             session.save(uneOv);
             tx.commit();
             session.close();
@@ -77,15 +72,15 @@ public class ServiceOeuvreDAO {
     }
 
     //  ***************************************
-    //  On supprime une oeuvre la base
+    //  On supprime une oeuvrevente la base
     //  ***************************************
-    public void deleteAdherent(OeuvreventeEntity uneOv) throws MonException
+    public void deleteOeuvrevente(OeuvreventeEntity uneOv) throws MonException
     {
         Transaction tx = null;
         try {
             Session   session = ServiceHibernate.currentSession();
             tx = session.beginTransaction();
-            // on supprime l'oeuvre de la base
+            // on supprime l'oeuvrevente de la base
             session.delete(uneOv);
             tx.commit();
             session.close();
@@ -101,7 +96,7 @@ public class ServiceOeuvreDAO {
     }
 
     //  ***************************************
-    //  On modifie une oeuvre la base
+    //  On modifie une oeuvrevente en base
     //  ***************************************
     public void updateOeuvre(OeuvreventeEntity uneOv) throws MonException
     {

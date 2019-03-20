@@ -1,9 +1,7 @@
 package com.epul.controle;
 
-import com.epul.dao.ServiceAdherentDAO;
-import com.epul.dao.ServiceOeuvreDAO;
+import com.epul.dao.ServiceOeuvreventeDAO;
 import com.epul.meserreurs.MonException;
-import com.epul.metier.AdherentEntity;
 import com.epul.metier.OeuvreventeEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,16 +11,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Controller
-public class ControleurOeuvre {
+public class ControleurOeuvrevente {
 
-    @RequestMapping(value = "listerOeuvres.htm")
-    public ModelAndView listerOeuvres(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    @RequestMapping(value = "listerOeuvreventes.htm")
+    public ModelAndView listerOeuvreventes(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String destinationPage;
         try {
             // HttpSession session = request.getSession();
-            ServiceOeuvreDAO unServiceOeuvreDAO = new ServiceOeuvreDAO();
-            request.setAttribute("mesOeuvres", unServiceOeuvreDAO.consulterListeOeuvres());
-            destinationPage = "vues/listerOeuvre";
+            ServiceOeuvreventeDAO unServiceOeuvreventeDAO = new ServiceOeuvreventeDAO();
+            request.setAttribute("mesOeuvreventes", unServiceOeuvreventeDAO.consulterListeOeuvreventes());
+            destinationPage = "vues/listerOeuvrevente";
         } catch (MonException e) {
             request.setAttribute("MesErreurs", e.getMessage());
             destinationPage = "vues/Erreur";
@@ -31,17 +29,16 @@ public class ControleurOeuvre {
         return new ModelAndView(destinationPage);
     }
 
-
-    @RequestMapping(value = "insererOeuvre.htm")
-    public ModelAndView insererOeuvre(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    @RequestMapping(value = "insererOeuvrevente.htm")
+    public ModelAndView insererOeuvrevente(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         String destinationPage = "";
         try {
             OeuvreventeEntity uneOv = new OeuvreventeEntity();
             uneOv.setTitreOeuvrevente(request.getParameter("txttitre"));
             uneOv.setPrixOeuvrevente(Integer.parseInt(request.getParameter("txtprix")));
-            ServiceOeuvreDAO unServiceOeuvreDAO = new ServiceOeuvreDAO();
-            unServiceOeuvreDAO.insertOeuvre(uneOv);
+            ServiceOeuvreventeDAO unServiceOeuvreventeDAO = new ServiceOeuvreventeDAO();
+            unServiceOeuvreventeDAO.insertOeuvrevente(uneOv);
         } catch (Exception e) {
             request.setAttribute("MesErreurs", e.getMessage());
             destinationPage = "vues/Erreur";
@@ -49,18 +46,16 @@ public class ControleurOeuvre {
         destinationPage = "index";
         return new ModelAndView(destinationPage);
     }
-    @RequestMapping(value = "ajouterOeuvre.htm")
-    public ModelAndView ajouterOeuvre(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    @RequestMapping(value = "ajouterOeuvrevente.htm")
+    public ModelAndView ajouterOeuvrevente(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         String destinationPage = "";
         try {
-            destinationPage = "vues/ajouterOeuvre";
+            destinationPage = "vues/ajouterOeuvrevente";
         } catch (Exception e) {
             request.setAttribute("MesErreurs", e.getMessage());
             destinationPage = "Erreur";
         }
-
         return new ModelAndView(destinationPage);
     }
-
 }

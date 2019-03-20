@@ -28,9 +28,9 @@
 						<td>${item.titreOeuvrevente}</td>
 						<td>${item.prixOeuvrevente}</td>
 						<td>${item.idProprietaire}</td>
-						<td><a class="btn btn-info" href="modifierOeuvre.htm?id=${item.idOeuvrevente}" role="button"><span
+						<td><a class="btn btn-info" href="modifierOeuvrevente.htm?id=${item.idOeuvrevente}" role="button"><span
 								class="glyphicon glyphicon-pencil"></span> Modifier</a>
-							<a class="btn btn-danger" href="reserverOeuvre.htm?id=${item.idOeuvrevente}" role="button"><span
+							<a class="btn btn-danger" href="reserverOeuvrevente.htm?id=${item.idOeuvrevente}" role="button"><span
 									class="glyphicon glyphicon-remove-circle"></span> Supprimer</a></td>
 					</tr>
 				</c:forEach>
