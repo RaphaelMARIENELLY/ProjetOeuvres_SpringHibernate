@@ -13,6 +13,8 @@ public class OeuvreventeEntity {
     private String etatOeuvrevente;
     private double prixOeuvrevente;
 
+    private int idProprietaire;
+
     @Id
     @Column(name = "id_oeuvrevente")
     public int getIdOeuvrevente() {
@@ -51,6 +53,15 @@ public class OeuvreventeEntity {
 
     public void setPrixOeuvrevente(double prixOeuvrevente) {
         this.prixOeuvrevente = prixOeuvrevente;
+    }
+
+    @Column(name = "id_proprietaire")
+    public int getIdProprietaire() {
+        return idProprietaire;
+    }
+
+    public void setIdProprietaire(int idProprietaire) {
+        this.idProprietaire = idProprietaire;
     }
 
     @Override

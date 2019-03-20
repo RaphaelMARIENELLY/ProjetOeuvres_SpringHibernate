@@ -19,15 +19,27 @@
                     </c:if>
                     <c:if test="${sessionScope.id > 0  }">
                 <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <span class="glyphicon glyphicon-user"></span>
+                    Adhérents
+                    <span class="caret"></span>
+                </a>
+
+                <ul class="dropdown-menu">
+                    <li><a href="ajouterAdherent.htm"> <span class="glyphicon glyphicon-plus"></span> Ajout Adhérent</a></li>
+                    <li><a href="listerAdherent.htm"><span class="glyphicon glyphicon-th-list"></span> Lister les adhérents</a></li>
+                </ul>
+                </li>
+                <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <span class="glyphicon glyphicon-user"></span>
-                        Adhérents
+                        Oeuvres
                         <span class="caret"></span>
                     </a>
 
                     <ul class="dropdown-menu">
-                        <li><a href="ajouterAdherent.htm"> <span class="glyphicon glyphicon-plus"></span> Ajout Adhérent</a></li>
-                        <li><a href="listerAdherent.htm"><span class="glyphicon glyphicon-th-list"></span> Lister les adhérents</a></li>
+                        <li><a href="ajouterOeuvre.htm"> <span class="glyphicon glyphicon-plus"></span> Ajout Oeuvre</a></li>
+                        <li><a href="listerOeuvres.htm"><span class="glyphicon glyphicon-th-list"></span> Lister les oeuvres</a></li>
                     </ul>
                 </li>
                 <li><a href="javascript:fermer()"><span class="glyphicon glyphicon-log-out"></span> Quitter</a></li>
